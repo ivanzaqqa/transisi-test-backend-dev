@@ -15,6 +15,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <div class="float-right">
+                        <a class="btn btn-success" href="{{ route('employees.index') }}">Employees</a>
+                    </div>
+                    <div class="float-right">
+                        <a class="btn btn-dark" href="#">Companies</a>
+                    </div>
                 </div>
             </div>
         </div>

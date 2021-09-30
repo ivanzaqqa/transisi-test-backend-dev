@@ -15,6 +15,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
+            $table->string('name');
             $table->integer('company');
             $table->string('email');
             $table->timestamps();
