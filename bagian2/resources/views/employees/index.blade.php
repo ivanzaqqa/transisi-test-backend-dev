@@ -3,6 +3,11 @@
 @section('content')
         <div class="container">
         <div class="col-lg-12 margin-tb">
+            
+            @if (session('status'))
+                        <div class="alert alert-success">{{ session('status') }}</div>
+                    @endif
+
             <div class="pull-left mt-2">
                 
                 <h2>Employees</h2>
@@ -36,16 +41,12 @@
             <td>{{ $data->company }}</td>
             <td>{{ $data->email }}</td>
             <td>
-                <form action="{{ route('employees.destroy',$data->id) }}" method="POST">
-   
-                    <a class="btn btn-info" href="{{ route('employees.show',$data->id) }}">Show</a>
-    
-                    <a class="btn btn-primary" href="{{ route('employees.edit',$data->id) }}">Edit</a>
+                <form action="{{ url('employees/'.$data->id) }}" method="POST">   
+                    <a class="btn btn-sm btn-info" href="{{ url('employees/'.$data->id.'/edit') }}">Edit</a>
    
                     @csrf
                     @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                 </form>
             </td>
         </tr>

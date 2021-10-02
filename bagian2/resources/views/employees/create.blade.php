@@ -1,56 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row mt-5 mb-5">
-    <div class="col-lg-12 margin-tb">
-        <div class="float-left">
-            <h2>Create New Employees</h2>
-        </div>
-        <div class="float-right">
-            <a class="btn btn-secondary" href="{{ route('employees.index') }}"> Back</a>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+
+                    @if (session('status'))
+                        <div class="alert alert-success">{{ session('status') }}</div>
+                    @endif
+                    <div class="card">
+                        <div class="card-header">
+                
+                        <h4>Add Employees</h4>
+                        <a class="btn btn-danger float-end" href="{{ url('employees') }}">Back</a>
+                        
+                    </div> 
+                    <div class="card-body">
+
+                        <form action="{{ url('employees') }}" method="POST">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <label for="">Name</label>
+                                <input type="text" name="name" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Company</label>
+                                <input type="text" name="company" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Email</label>
+                                <input type="text" name="email" class="form-control">
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+            </div>
         </div>
     </div>
 </div>
- 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
- 
-<form action="{{ route('employees.store') }}" method="POST">
-    @csrf
- 
-     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Company:</strong>
-                    <input type="text" name="company" class="form-control" placeholder="Company">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Email:</strong>
-                        <input type="text" name="email" class="form-control" placeholder="Email">
-                    </div>
-                </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
- 
-</form>
-@endsection
+
+    @endsection

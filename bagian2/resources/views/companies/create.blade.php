@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Logo</label>
-                                <input type="text" name="logo" class="form-control">
+                                <input type="file" name="logo" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Website</label>
