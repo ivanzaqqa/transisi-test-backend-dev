@@ -18,7 +18,8 @@
         </div>
     @endif
    
-    <table class="table table-bordered">
+    <div class="container table-responsive py-5">
+    <table class="table table-bordered table-hover">
         <tr>
             <th>No</th>
             <th>Name</th>
@@ -48,6 +49,7 @@
         </tr>
         @endforeach
     </table>
+</div>
     <div class="text-center">
         {!! $employees->links() !!}
     </div>

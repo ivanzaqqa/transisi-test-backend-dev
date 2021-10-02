@@ -73,6 +73,13 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('companies') }}">{{ __('Companies') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('employees') }}">{{ __('Employees') }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

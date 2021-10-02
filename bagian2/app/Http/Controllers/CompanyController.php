@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -13,7 +14,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::latest()->paginate(5);
+
+        return view('companies.index', compact('companies'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +27,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -34,7 +38,17 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'logo' => 'required',
+            'website' => 'required',
+        ]);
+
+        Company::create($request->all());
+
+        return redirect()->route('companies.index')
+            ->with('success', 'Companies added successfully.');
     }
 
     /**
@@ -45,7 +59,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('companies.show', compact('companies'));
     }
 
     /**
@@ -56,7 +70,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('companies.edit', compact('companies'));
     }
 
     /**
@@ -66,9 +80,19 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $companies)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'logo' => 'required',
+            'website' => 'required',
+        ]);
+
+        $companies->update($request->all());
+
+        return redirect()->route('companies.index')
+            ->with('success', 'Companies updated successfully');
     }
 
     /**
@@ -77,8 +101,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $companies)
     {
-        //
+        $companies->delete();
+
+        return redirect()->route('companies.index')
+            ->with('success', 'Companies deleted successfully');
     }
 }
