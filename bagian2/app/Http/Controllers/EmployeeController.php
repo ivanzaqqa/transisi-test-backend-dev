@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class EmployeeController extends Controller
 {
@@ -27,7 +29,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $companies = Company::all();
+        return view('employees.create', compact('companies'));
     }
 
     /**

@@ -23,10 +23,15 @@
                                 <label for="">Name</label>
                                 <input type="text" name="name" class="form-control">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="">Company</label>
-                                <input type="text" name="company" class="form-control">
-                            </div>
+                            <select name="company" class="form-control">
+                                <option>Select Companies</option><!--selected by default-->
+                                @foreach($companies as $data)
+                                    <option value="{{ $data->id }}">
+                                        {{ $data->name }}
+                                    </option>
+                                @endforeach
+                           </select>
+                           
                             <div class="form-group mb-3">
                                 <label for="">Email</label>
                                 <input type="text" name="email" class="form-control">

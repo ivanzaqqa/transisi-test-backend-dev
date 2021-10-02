@@ -38,7 +38,7 @@
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $data->name }}</td>
-            <td>{{ $data->company }}</td>
+            <td>{{ $data->companies->name }}</td>
             <td>{{ $data->email }}</td>
             <td>
                 <form action="{{ url('employees/'.$data->id) }}" method="POST">   

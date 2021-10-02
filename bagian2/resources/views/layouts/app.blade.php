@@ -49,11 +49,11 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -72,14 +72,15 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('companies') }}">{{ __('Companies') }}</a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('employees') }}">{{ __('Employees') }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('companies') }}">{{ __('Companies') }}</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('employees') }}">{{ __('Employees') }}</a>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
