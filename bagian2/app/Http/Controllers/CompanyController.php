@@ -45,10 +45,14 @@ class CompanyController extends Controller
             'website' => 'required',
         ]);
 
-        Company::create($request->all());
+        $companies = new Company;
+        $companies->name = $request->input('name');
+        $companies->email = $request->input('email');
+        $companies->logo = $request->input('logo');
+        $companies->website = $request->input('website');
+        $companies->save();
 
-        return redirect()->route('companies.index')
-            ->with('success', 'Companies added successfully.');
+        return redirect()->back()->with('status', 'Companies Added Successfully');
     }
 
     /**
@@ -59,7 +63,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        return view('companies.show', compact('companies'));
+        return view('companies.show', compact('id'));
     }
 
     /**
@@ -70,6 +74,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
+        $companies = Company::find($id);
         return view('companies.edit', compact('companies'));
     }
 
@@ -80,7 +85,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $companies)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
@@ -89,10 +94,14 @@ class CompanyController extends Controller
             'website' => 'required',
         ]);
 
-        $companies->update($request->all());
+        $companies = Company::find($id);
+        $companies->name = $request->input('name');
+        $companies->email = $request->input('email');
+        $companies->logo = $request->input('logo');
+        $companies->website = $request->input('website');
+        $companies->update();
 
-        return redirect()->route('companies.index')
-            ->with('success', 'Companies updated successfully');
+        return redirect()->back()->with('status', 'Companies Updated Successfully');
     }
 
     /**
@@ -101,11 +110,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $companies)
+    public function destroy($id)
     {
+        $companies = Company::find($id);
         $companies->delete();
 
-        return redirect()->route('companies.index')
-            ->with('success', 'Companies deleted successfully');
+        return redirect()->back()->with('status', 'Companies Deleted Successfully');
     }
 }
