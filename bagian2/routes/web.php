@@ -25,3 +25,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('employees', EmployeeController::class);
 Route::resource('companies', CompanyController::class);
+Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
